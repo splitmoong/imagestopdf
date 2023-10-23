@@ -73,13 +73,42 @@ def images_to_pdf():
 
 Label(win, text="Image to PDF Converter", font="Caveat 25 bold").pack(pady=10)
 
+
+
+
 button_select_inactive = Image.open('C:\\Users\\thebo\\PycharmProjects\\imagestopdf\\design\\buttons\\select_images_inactive.png')
-button_some = ImageTk.PhotoImage(button_select_inactive)
-button_submit = ttk.Button(win, text="Select Images", image=button_some, command=select_files)
+button_select_inactive_nohover = ImageTk.PhotoImage(button_select_inactive)
+
+button_select_active = Image.open('C:\\Users\\thebo\\PycharmProjects\\imagestopdf\\design\\buttons\\select_images_active.png')
+button_select_active_hover = ImageTk.PhotoImage(button_select_active)
+
+button_select_click = Image.open('C:\\Users\\thebo\\PycharmProjects\\imagestopdf\\design\\buttons\\select_images_click.png')
+button_select_onclick = ImageTk.PhotoImage(button_select_click)
+button_submit = Button(win, text="Select Images",image=button_select_inactive_nohover, command=select_files, bd=0, relief="sunken")
+button_submit.config()
 button_submit.pack(ipadx=10)
+
+def on_hover(event):
+    button_submit.config(image= button_select_active_hover)
+def on_leave(event):
+    button_submit.config(image= button_select_inactive_nohover)
+def on_click(event):
+    # Change the image or perform any action you want on button click
+    button_submit.config(image=button_select_onclick)
+
+style = ttk.Style()
+style.configure("TButton", relief="sunken")
+button_submit.bind("<Enter>", on_hover)
+button_submit.bind("<Leave>", on_leave)
+button_submit.bind("<Button-1>", on_click)
+
 
 frame = Frame(win)
 frame.pack()
+
+
+
+
 
 ttk.Button(frame, text="Convert and Save as PDF", command=images_to_pdf).pack(side=LEFT, pady=20, ipadx=10)
 
