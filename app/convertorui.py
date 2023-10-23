@@ -72,7 +72,11 @@ def images_to_pdf():
 
 
 Label(win, text="Image to PDF Converter", font="Caveat 25 bold").pack(pady=10)
-ttk.Button(win, text="Select Images", command=select_files).pack(ipadx=10)
+
+button_select_inactive = Image.open('C:\\Users\\thebo\\PycharmProjects\\imagestopdf\\design\\buttons\\select_images_inactive.png')
+button_some = ImageTk.PhotoImage(button_select_inactive)
+button_submit = ttk.Button(win, text="Select Images", image=button_some, command=select_files)
+button_submit.pack(ipadx=10)
 
 frame = Frame(win)
 frame.pack()
@@ -92,5 +96,8 @@ image_index_label.pack()
 
 ttk.Button(frame, text="Previous", command=previous_image).pack(side=LEFT, padx=10)
 ttk.Button(frame, text="Next", command=next_image).pack(side=LEFT, padx=10)
+
+
+
 
 win.mainloop()
