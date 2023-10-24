@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter import ttk
 from PIL import Image, ImageTk, ExifTags
-import app.convertorlogic
+import convertorlogic
 from convertorlogic import convert_images_to_pdf
 import subprocess
 
